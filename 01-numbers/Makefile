@@ -3,6 +3,7 @@ all: rom-go rom-rust rom-zig run
 
 .PHONY: rom-go
 rom-go:
+	mkdir -p build
 	rm -f ./build/go.wasm
 	cd ./modules/go && \
 	 tinygo build -o ../../build/go.wasm -target=wasi main.go
@@ -14,6 +15,7 @@ rust-init:
 
 .PHONY: rom-rust
 rom-rust:
+	mkdir -p build
 	rm -f ./build/rust.wasm
 	cd ./modules/rust && \
 	 cargo build --release --target wasm32-wasi
@@ -21,6 +23,7 @@ rom-rust:
 
 .PHONY: rom-zig
 rom-zig:
+	mkdir -p build
 	rm -f ./build/zig.wasm
 	cd ./modules/zig && \
 	 zig build-lib src/main.zig -target wasm32-freestanding -dynamic -rdynamic && \
